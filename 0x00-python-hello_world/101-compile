@@ -1,0 +1,19 @@
+#!/bin/bash
+PYFILE="$PYFILE"
+PYFILEc="${PYFILE%.*}.pyc"
+
+if [ -z "$PYFILE" ]; then
+    echo "Usage: ./101-compile <python_file>"
+    exit 1
+fi
+
+echo "Compiling $PYFILE ..."
+python3 -m py_compile "$PYFILE"
+if [ -f "__pycache__/${PYFILE%.*}.cpython-*.pyc" ]; then
+    mv __pycache__/"${PYFILE%.*}.cpython-*.pyc" "$PYFILEc"
+    rm -rf __pycache__
+else
+    echo "Compilation failed"
+    exit 1
+fi
+
