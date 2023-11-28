@@ -6,3 +6,4 @@
 #include <stdlib.h>
 
 int islower(int c);
+void uppercase(char *str);
