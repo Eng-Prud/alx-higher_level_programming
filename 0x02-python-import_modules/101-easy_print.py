@@ -1,2 +1,2 @@
 #!/usr/bin/python3
-print("#pythoniscool")
+if 1: print("#pythoniscool")
