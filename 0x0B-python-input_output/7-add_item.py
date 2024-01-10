@@ -1,21 +1,22 @@
 #!/usr/bin/python3
-"""Module that loads, adds all arguments to a Python list"""
-from sys import argv
+"""
+Script for loading, adding, and saving items to a JSON file.
+"""
 
+import sys
+from os.path import exists
+from json import load, dump
+from save_to_json_file import save_to_json_file
+from load_from_json_file import load_from_json_file
 
-if __name__ == "__main__":
-    import sys
-    import json
-    save_to_json_file = \
-        __import__('7-save_to_json_file').save_to_json_file
-    load_from_json_file = \
-        __import__('8-load_from_json_file').load_from_json_file
+filename = "add_item.json"
 
-    filename = "add_item.json"
-    with open(filename, 'a+') as f:
-        if f.tell() == 0:
-            json.dump([], f)
-    file_data = load_from_json_file("add_item.json")
-    if len(sys.argv) > 1:
-        file_data.extend(sys.argv[1:])
-    save_to_json_file(file_data, filename)
+# Load existing items from the file
+items = load_from_json_file(filename)
+
+# Add new items from command line arguments
+items.extend(sys.argv[1:])
+
+# Save the updated list back to the file
+save_to_json_file(items, filename)
+
