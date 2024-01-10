@@ -3,6 +3,7 @@
 Module for reading a text file(UTP8)and printing it to standard output
 """
 
+
 def read_file(filename=""):
     """
     Reads file(UTF8)and prints it
